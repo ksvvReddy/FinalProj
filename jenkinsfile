@@ -1,0 +1,21 @@
+pipeline{
+
+    agent any
+
+    stages{
+
+        stage('Build Jar'){
+            steps{
+                bat 'mvn clean test -Dbrowser=chrome -Dselenium.grid.enabled=true'
+            }
+        }
+
+    }
+
+    post {
+        always {
+           echo 'Clean up'
+        }
+    }
+
+}
