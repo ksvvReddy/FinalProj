@@ -6,10 +6,23 @@ pipeline{
 
         stage('Build Jar'){
             steps{
-                bat 'mvn clean test -Dbrowser=chrome -Dselenium.grid.enabled=true'
+                bat 'mvn clean package -DskipTests'
             }
         }
 
+        stage('Build Image'){
+            steps{
+                bat 'docker build -t vardhanreddy071094/pracimage2  .'
+            }
+        }
+
+        stage('Run Image'){
+           
+            steps{
+                bat "docker run -e BROWSER=chrome -e HUB_HOST=192.168.56.1 -e TEST_SUITE=testng.xml  vardhanreddy071094/pracimage2"
+            }
+        
+}
     }
 
     post {
