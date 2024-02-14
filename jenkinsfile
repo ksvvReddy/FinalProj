@@ -19,7 +19,7 @@ pipeline{
         stage('Run Image'){
            
             steps{
-                bat "docker run -v ./:/home/selenium-docker/screenshot -e BROWSER=chrome -e HUB_HOST=192.168.56.1 -e TEST_SUITE=testng.xml  vardhanreddy071094/pracimage3"
+                bat "docker run -v ./screenshot:/home/selenium-docker/screenshot -e BROWSER=chrome -e HUB_HOST=192.168.56.1 -e TEST_SUITE=testng.xml  vardhanreddy071094/pracimage3"
             }
         
 }
