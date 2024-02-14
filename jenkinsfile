@@ -18,8 +18,15 @@ pipeline{
 		
 		stage('prepare Folder'){
 		 steps{
-                bat 'rmdir /s /q screenshot test-output'
-                bat 'mkdir screenshot test-output'
+                bat 'if not exist "screenshot" "test-output" ( 
+    echo Creating Folder...
+    mkdir "screenshot" "test-output" 
+)
+
+if exist "screenshot" "test-output"  ( 
+    echo Re-Creating Folder...
+    rmdir /s /q "screenshot" "test-output" 
+)'
             }
 		}
 
