@@ -27,7 +27,7 @@ pipeline{
 
     post {
         always {
-           echo 'Clean up'
+         archiveArtifacts artifacts: 'screenshot', followSymlinks: false
         }
     }
 
