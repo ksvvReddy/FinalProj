@@ -18,15 +18,8 @@ pipeline{
 		
 		stage('prepare Folder'){
 		 steps{
-                bat 'if not exist "screenshot" "test-output" ( 
-    echo Creating Folder...
-    mkdir "screenshot" "test-output" 
-)
-
-if exist "screenshot" "test-output"  ( 
-    echo Re-Creating Folder...
-    rmdir /s /q "screenshot" "test-output" 
-)'
+                bat 'if not exist screenshot mkdir screenshot'
+                bat 'if not exist test-output mkdir test-output'
             }
 		}
 
@@ -42,6 +35,8 @@ if exist "screenshot" "test-output"  (
     post {
         always {
          archiveArtifacts artifacts: 'test-output/emailable-report.html,screenshot/*.png', followSymlinks: false
+                bat 'rmdir /s /q screenshot'
+                bat 'rmdir /s /q test-output'
         }
     }
 
