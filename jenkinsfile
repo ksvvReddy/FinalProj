@@ -18,6 +18,7 @@ pipeline{
 		
 		stage('prepare Folder'){
 		 steps{
+                bat 'rmdir screenshot test-output'
                 bat 'mkdir screenshot test-output'
             }
 		}
