@@ -12,14 +12,14 @@ pipeline{
 
         stage('Build Image'){
             steps{
-                bat 'docker build -t vardhanreddy071094/pracimage2  .'
+                bat 'docker build -t vardhanreddy071094/pracimage3  .'
             }
         }
 
         stage('Run Image'){
            
             steps{
-                bat "docker run -e BROWSER=chrome -e HUB_HOST=192.168.56.1 -e TEST_SUITE=testng.xml  vardhanreddy071094/pracimage2"
+                bat "docker run -e BROWSER=chrome -e HUB_HOST=192.168.56.1 -e TEST_SUITE=testng.xml  vardhanreddy071094/pracimage3"
             }
         
 }
