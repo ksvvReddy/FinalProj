@@ -15,11 +15,17 @@ pipeline{
                 bat 'docker build -t vardhanreddy071094/pracimage3  .'
             }
         }
+		
+		stage('prepare Folder'){
+		 steps{
+                bat 'mkdir screenshot test-output'
+            }
+		}
 
         stage('Run Image'){
            
             steps{
-                bat "docker run -v ./screenshot:/home/selenium-docker/screenshot -e BROWSER=chrome -e HUB_HOST=192.168.56.1 -e TEST_SUITE=testng.xml  vardhanreddy071094/pracimage3"
+                bat "docker run -v ./screenshot:/home/selenium-docker/screenshot -v ./test-output:/home/selenium-docker/test-output -e BROWSER=chrome -e HUB_HOST=192.168.56.1 -e TEST_SUITE=testng.xml  vardhanreddy071094/pracimage3"
             }
         
 }
@@ -27,7 +33,7 @@ pipeline{
 
     post {
         always {
-         archiveArtifacts artifacts: 'screenshot/*.png', followSymlinks: false
+         archiveArtifacts artifacts: 'test-output/*,screenshot/*.png', followSymlinks: false
         }
     }
 
