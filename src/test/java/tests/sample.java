@@ -12,7 +12,7 @@ public class sample extends AbstractTest{
 	@Test
 	public void cricbuzz() throws InterruptedException {		
 		driver.get(Config.get(Constants.CRICBUZZ_URL));
-		//Assert.assertTrue(false);
+		Assert.assertTrue(false);
 		Thread.sleep(2000);
 		
 		System.out.println(Config.get(Constants.VARIABLE)+ driver.getTitle() +Thread.currentThread().getId());
